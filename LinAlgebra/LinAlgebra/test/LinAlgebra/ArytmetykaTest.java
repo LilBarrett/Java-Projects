@@ -3,9 +3,9 @@ package LinAlgebra;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ArytmetykaTest {
+public class ArytmetykaTest{
     @Test
-    void testScalarAddition() {
+    void testScalarAddition() throws DimensionException {
         Scalar a = new Scalar(3.5);
         Scalar b = new Scalar(11.5);
         Scalar result = (Scalar) a.suma(b);
@@ -13,7 +13,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testScalarMultiplication() {
+    void testScalarMultiplication() throws DimensionException {
         Scalar a = new Scalar(3.0);
         Scalar b = new Scalar(12.0);
         Scalar result = (Scalar) a.iloczyn(b);
@@ -21,7 +21,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testScalarVectorAddition() {
+    void testScalarVectorAddition() throws DimensionException {
         Scalar a = new Scalar(3.0);
         Vector v = new Vector(new double[]{1.0, 2.5}, false);
         Vector result = (Vector) a.suma(v);
@@ -29,7 +29,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testScalarVectorMultiplication() {
+    void testScalarVectorMultiplication() throws DimensionException {
         Scalar a = new Scalar(4.0);
         Vector v = new Vector(new double[]{1.5, 2.25}, false);
         Vector result = (Vector) a.iloczyn(v);
@@ -37,7 +37,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testVectorScalarAddition() {
+    void testVectorScalarAddition() throws DimensionException {
         Vector v = new Vector(new double[]{1.0, 2.5}, true);
         Scalar a = new Scalar(3.0);
         Vector result = (Vector) v.suma(a);
@@ -45,7 +45,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testVectorScalarMultiplication() {
+    void testVectorScalarMultiplication() throws DimensionException {
         Vector v = new Vector(new double[]{1.5, 2.25}, true);
         Scalar a = new Scalar(4.0);
         Vector result = (Vector) v.iloczyn(a);
@@ -53,7 +53,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testScalarMatrixAddition() {
+    void testScalarMatrixAddition() throws DimensionException {
         Scalar a = new Scalar(3.0);
         Matrix m = new Matrix(new double[][]{
             {1.25, 3.0, -12.0},
@@ -67,7 +67,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testScalarMatrixMultiplication() {
+    void testScalarMatrixMultiplication() throws DimensionException {
         Scalar a = new Scalar(-3.0);
         Matrix m = new Matrix(new double[][]{
             {1.25, 3.0, -12.0},
@@ -81,7 +81,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testVectorAddition1() {
+    void testVectorAddition1() throws DimensionException {
         Vector v1 = new Vector(new double[]{1.0, 2.0, 3.0}, false);
         Vector v2 = new Vector(new double[]{1.0, 1.0, -2.0}, false);
         Vector sum = (Vector) v1.suma(v2);
@@ -90,7 +90,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testVectorAddition2() {
+    void testVectorAddition2() throws DimensionException {
         Vector v1 = new Vector(new double[]{-2.0, 5.0}, true);
         Vector v2 = new Vector(new double[]{-5.0, 2.0}, true);
         Vector sum = (Vector) v1.suma(v2);
@@ -99,7 +99,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testVectorDotProduct1() {
+    void testVectorDotProduct1() throws DimensionException {
         Vector v1 = new Vector(new double[]{3.0, 2.0, -1.0}, true);
         Vector v2 = new Vector(new double[]{-2.0, 2.0, 1.0}, true);
         Scalar result = (Scalar) v1.iloczyn(v2);
@@ -107,7 +107,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testVectorDotProduct2() {
+    void testVectorDotProduct2() throws DimensionException {
         Vector v1 = new Vector(new double[]{-2.0, -5.0, 1.0, 3.0}, false);
         Vector v2 = new Vector(new double[]{-5.0, 1.0, 2.0, -3.0}, false);
         Scalar result = (Scalar) v1.iloczyn(v2);
@@ -115,7 +115,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testRowTimesColumnToMatrix() {
+    void testRowTimesColumnToMatrix() throws DimensionException {
         Vector v1 = new Vector(new double[]{1.0, 2.0, 3.0}, false); // row
         Vector v2 = new Vector(new double[]{1.0, 1.0, -2.0}, true); // column
         Matrix result = (Matrix) v1.iloczyn(v2);
@@ -126,7 +126,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testColumnTimesRowFullMatrix() {
+    void testColumnTimesRowFullMatrix() throws DimensionException {
         Vector v1 = new Vector(new double[]{1.0, 2.0, 3.0}, true); // column
         Vector v2 = new Vector(new double[]{1.0, 1.0, -2.0}, false); // row
         Matrix result = (Matrix) v1.iloczyn(v2);
@@ -139,7 +139,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testMatrixVectorMultiplication() {
+    void testMatrixVectorMultiplication() throws DimensionException {
         Matrix m = new Matrix(new double[][] {
             {1.0, 2.0},
             {3.0, -2.0},
@@ -155,7 +155,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testVectorMatrixMultiplication() {
+    void testVectorMatrixMultiplication() throws DimensionException {
         Vector v = new Vector(new double[]{1.0, -1.0, 2.0}, false);
         Matrix m = new Matrix(new double[][] {
             {1.0, 2.0},
@@ -170,7 +170,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testMatrixMatrixAddition() {
+    void testMatrixMatrixAddition() throws DimensionException {
         Matrix m1 = new Matrix(new double[][]{
             {1.0, -2.0, 3.0},
             {2.0, 1.0, -1.0}
@@ -189,7 +189,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testMatrixMatrixMultiplication() {
+    void testMatrixMatrixMultiplication() throws DimensionException {
         Matrix m1 = new Matrix(new double[][]{
             {2.0, 0.5},
             {1.0, -2.0},
@@ -210,7 +210,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testNegateScalar() {
+    void testNegateScalar() throws DimensionException {
         Scalar s = new Scalar(17.0);
         Scalar expected = new Scalar(-17.0);
         Scalar result = (Scalar) s.negacja();
@@ -219,7 +219,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testNegateVector() {
+    void testNegateVector() throws DimensionException {
         Vector v = new Vector(new double[]{10.0, -45.0, 0.0, 29.0, -3.0}, true);
         Vector expected = new Vector(new double[]{-10.0, 45.0, -0.0, -29.0, 3.0}, true);
         Vector result = (Vector) v.negacja();
@@ -228,7 +228,7 @@ public class ArytmetykaTest {
     }
 
     @Test
-    void testNegateMatrix() {
+    void testNegateMatrix() throws DimensionException {
         Matrix m = new Matrix(new double[][]{
             {0.0, 0.5, -1.25},
             {11.0, -71.0, -33.5},

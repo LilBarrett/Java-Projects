@@ -6,21 +6,21 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PrzypisaniaTest{
 
     @Test
-    void testAssignScalarToScalar() {
+    void testAssignScalarToScalar() throws DimensionException {
         Scalar s = new Scalar(1.0);
         s.przypisz(new Scalar(0.5));
         assertEquals(0.5, s.daj(), 1e-10);
     }
 
     @Test
-    void testAssignScalarToVector() {
+    void testAssignScalarToVector() throws DimensionException {
         Vector v = new Vector(new double[]{1.0, 2.0, 3.0}, false);
         v.przypisz(new Scalar(0.5));
         assertArrayEquals(new double[]{0.5, 0.5, 0.5}, v.getValues(), 1e-10);
     }
 
     @Test
-    void testAssignScalarToMatrix() {
+    void testAssignScalarToMatrix() throws DimensionException {
         Matrix m = new Matrix(new double[][]{
             {1.0, 2.0},
             {-3.0, -4.0},
@@ -35,7 +35,7 @@ public class PrzypisaniaTest{
     }
 
     @Test
-    void testAssignVectorToVector() {
+    void testAssignVectorToVector() throws DimensionException {
         Vector v1 = new Vector(new double[]{-1.0, 0.0, 1.0}, true);
         Vector v2 = new Vector(new double[]{-1.0, 0.0, 1.0}, false);
         Vector v3 = new Vector(new double[]{1.5, 2.5, 3.5}, true);
@@ -47,7 +47,7 @@ public class PrzypisaniaTest{
     }
 
     @Test
-    void testAssignVectorToMatrix() {
+    void testAssignVectorToMatrix() throws DimensionException {
         Matrix m = new Matrix(new double[][]{
             {1.0, 2.0, -2.0},
             {-3.0, -4.0, 4.0},
@@ -63,7 +63,7 @@ public class PrzypisaniaTest{
     }
 
     @Test
-    void testAssignMatrixToMatrix() {
+    void testAssignMatrixToMatrix() throws DimensionException {
         Matrix m1 = new Matrix(new double[][]{
             {1.0, 2.0, 3.0},
             {1.0, 3.0, 2.0}
@@ -79,7 +79,6 @@ public class PrzypisaniaTest{
         }, m1.getValues(), 1e-10);
     }
 
-    // Utility for 2D array comparison
     private static void assert2dArrayEquals(double[][] expected, double[][] actual, double delta) {
         assertEquals(expected.length, actual.length, "Row lengths differ");
         for (int i = 0; i < expected.length; ++i) {
