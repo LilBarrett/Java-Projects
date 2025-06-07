@@ -1,0 +1,52 @@
+package Gracze;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import Loteria.Blankiet;
+import Loteria.Kolektura;
+
+public class Stałoliczbowy extends Stały {
+    private int[] ulubioneLiczby;
+    
+    public Stałoliczbowy(String imie, String nazwisko, String pesel, long srodki, Kolektura[] ulubioneKolektury, int[] ulubioneLiczby) {
+        super(imie, nazwisko, pesel, srodki, ulubioneKolektury);
+        for (int liczba : ulubioneLiczby) {
+            if (liczba < 1 || liczba > 49) {
+                throw new IllegalArgumentException("Ulubione liczby muszą być z zakresu 1-49: " + liczba);
+            }
+        }
+        this.ulubioneLiczby = ulubioneLiczby;
+    }
+
+    @Override
+    public void kupKupon() {
+        Blankiet blankiet = generujBlankiet();
+        Kolektura kolektura = wybierzKolekture();
+        if(sprawdźCzyKupować(kolektura)){
+            kolektura.sprzedajKuponBlankiet(blankiet, this);
+            setOstatnieLosowanie(kolektura.getCentrala().getNastepnyNumerLosowania());
+            odświeżNastępną();
+        }
+    }
+
+    private Blankiet generujBlankiet() {
+        List<Set<Integer>> zakłady = new ArrayList<>();
+        Set<Integer> zakład = new HashSet<>();
+        for (int j = 0; j < 6 ; j++) {
+            zakład.add(ulubioneLiczby[j]);
+        }
+        int liczbaLosowań = 10;
+        return new Blankiet(zakłady, liczbaLosowań);
+    }
+    private boolean sprawdźCzyKupować(Kolektura kolektura) {
+        int ostatnieLosowanie = getOstatnieLosowanie();
+        if (ostatnieLosowanie == 0) {
+            return true;
+        }
+        int numerNastepnegoLosowania = kolektura.getCentrala().getNastepnyNumerLosowania();
+        return numerNastepnegoLosowania == ostatnieLosowanie + 10;
+    }
+}
